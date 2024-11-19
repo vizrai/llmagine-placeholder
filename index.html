@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMagine | Building What Matters</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary: #6154a4;
+            --secondary: #009d4b;
+            --background-start: #ffffff;
+            --background-end: #f5f5f7;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .nav-logo {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-logo {
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-logo.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(97, 84, 164, 0.1);
+        }
+        
+        .link-hover {
+            position: relative;
+        }
+        
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .link-hover:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="nav-logo w-32">
+                <img src="logo.svg" alt="LLMagine" class="h-8">
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="min-h-screen flex items-center justify-center px-6">
+            <div class="max-w-6xl w-full text-center">
+                <div class="hero-logo max-w-md mx-auto mb-12">
+                    <img src="logo.svg" alt="LLMagine" class="w-full">
+                </div>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
+                    An innovation studio building bridges between human potential and digital systems
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 section-fade" id="about">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl font-light mb-6 text-gray-900">Innovation Studio</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            We understand that talented teams need technology that fits their human world, not the other way around. We build solutions that transform complex processes into natural conversations, making powerful tools feel as intuitive as working with a trusted colleague.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card glass-card p-6 rounded-2xl">
+                            <h3 class="font-medium mb-2 text-gray-900">Human Experience</h3>
+                            <p class="text-gray-600">Technology that understands your context and way of working</p>
+                        </div>
+                        <div class="feature-card glass-card p-6 rounded-2xl">
+                            <h3 class="font-medium mb-2 text-gray-900">Meaningful Impact</h3>
+                            <p class="text-gray-600">Solutions that amplify what matters most in your mission</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 section-fade" id="initiatives">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-light mb-12 text-center text-gray-900">Current Initiatives</h2>
+                <div class="glass-card p-8 rounded-2xl hover:bg-white/90 transition-colors duration-300">
+                    <h3 class="text-2xl font-medium mb-4 text-gray-900">Vizr</h3>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Transforming operations for mission-driven organizations by making technology more human.
+                    </p>
+                    <a href="https://vizr.ai" class="inline-block text-gray-600 link-hover">
+                        Learn more at vizr.ai →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 section-fade" id="contact">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-light mb-6 text-gray-900">Connect With Us</h2>
+                <p class="text-lg text-gray-600">
+                    Want to explore how we can help bridge your human and digital worlds? Reach out at 
+                    <a href="mailto:hello@llmagine.ai" class="text-gray-900 link-hover">
+                        hello@llmagine.ai
+                    </a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-center text-gray-500">&copy; 2024 LLMagine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLogo = document.querySelector('.nav-logo');
+            const heroLogo = document.querySelector('.hero-logo');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.section-fade').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Handle logo transitions
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navLogo.classList.add('visible');
+                    heroLogo.classList.add('hidden');
+                } else {
+                    navLogo.classList.remove('visible');
+                    heroLogo.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
