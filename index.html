@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LLMagine | Building What Matters</title>
@@ -25,10 +25,11 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
+        /* Navigation Logo */
         .nav-logo {
             opacity: 0;
             transform: translateY(-20px);
-            transition: all 0.3s ease;
+            transition: all 1.3s ease;
         }
         
         .nav-logo.visible {
@@ -36,16 +37,99 @@
             transform: translateY(0);
         }
         
-        .hero-logo {
-            transform: translateY(0);
-            transition: all 0.3s ease;
+        /* Hero Section Styles */
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 1px 1px, rgba(97, 84, 164, 0.07) 1px, transparent 0),
+                linear-gradient(to bottom, #fefefe, #f5f5f7);
+            background-size: 32px 32px, 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.5rem;
         }
-        
-        .hero-logo.hidden {
+
+        .logo-container {
+            max-width: 360px; /* Slightly smaller */
+            margin: 0 auto 3rem; /* More space below */
+            padding: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .tagline {
+            font-size: clamp(3.5rem, 10vw, 6rem); /* Bigger */
+            line-height: 1;
+            margin-bottom: 2.5rem;
+            margin-top: -2rem; /* Pull up closer to logo */
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: #1a202c; /* Tailwind's text-gray-900 */
             opacity: 0;
-            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
         }
-        
+
+        /* Updated Subtitle Wrapper */
+        .subtitle-wrapper {
+            max-width: 40rem; /* Wider for better text flow */
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            line-height: 1.6;
+            color: #666; /* Lighter gray for better hierarchy */
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Bridge Concepts */
+        .bridge-concepts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 0.5rem;
+            position: relative;
+        }
+
+        .bridge-concepts::before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: 25%;
+            right: 25%;
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(97, 84, 164, 0.3),
+                transparent
+            );
+            transform: translateY(-50%);
+        }
+
+        .concept {
+            color: var(--primary);
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            font-weight: 400;
+        }
+
+        .connector {
+            color: #666;
+            font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+        }
+
+        /* Section Fade-In Animations */
         .section-fade {
             opacity: 0;
             transform: translateY(20px);
@@ -57,6 +141,7 @@
             transform: translateY(0);
         }
         
+        /* Glass Card Styles */
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
@@ -69,8 +154,42 @@
             box-shadow: 0 8px 32px rgba(97, 84, 164, 0.1);
         }
         
+        /* Initiative Card Styles */
+        .initiative-card {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .initiative-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(97, 84, 164, 0.03), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .initiative-card:hover::before {
+            opacity: 1;
+        }
+
+        .initiative-card:hover {
+            border-color: rgba(97, 84, 164, 0.1);
+            box-shadow: 0 8px 32px rgba(97, 84, 164, 0.08);
+        }
+        
+        /* Link Hover Effect */
         .link-hover {
             position: relative;
+            color: var(--primary);
+            transition: color 0.3s ease;
         }
         
         .link-hover::after {
@@ -91,6 +210,11 @@
             transform-origin: left;
         }
 
+        .link-hover:hover {
+            color: var(--primary);
+        }
+
+        /* Feature Card Styles */
         .feature-card {
             transition: all 0.3s ease;
         }
@@ -100,34 +224,103 @@
             transform: translateY(-4px);
         }
 
-        .tagline {
-            font-weight: 300;
-            letter-spacing: -0.02em;
+        /* FadeIn Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Additional FadeInUp Animation */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle Gradient Overlay on Hover */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(97, 84, 164, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-section:hover::after {
+            opacity: 1;
+        }
+
+        /* Initiatives Section Specific Styles */
+        .section-fade#initiatives {
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,247,0.8));
+        }
+
+        .initiative-label {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: rgba(97, 84, 164, 0.1);
+            color: var(--primary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .initiative-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .bg-primary-10 {
+            background-color: rgba(97, 84, 164, 0.1);
+        }
+
+        .bg-secondary-10 {
+            background-color: rgba(0, 157, 75, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .bridge-concepts::before {
+                left: 20%;
+                right: 20%;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <div class="nav-logo w-32">
-                <img src="logo.svg" alt="LLMagine" class="h-8">
-            </div>
-        </div>
-    </nav>
 
     <main>
-        <section class="min-h-screen flex items-center justify-center px-6">
-            <div class="max-w-6xl w-full text-center">
-                <div class="hero-logo max-w-md mx-auto mb-8">
+        <!-- Updated Hero Section -->
+        <section class="hero-section">
+            <div class="max-w-6xl w-full text-center relative">
+                <div class="logo-container">
                     <img src="logo.svg" alt="LLMagine" class="w-full">
                 </div>
-                <h1 class="tagline text-4xl md:text-5xl text-gray-900 mb-6">Building What Matters</h1>
-                <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
-                    An innovation studio building bridges between human potential and digital systems
-                </p>
+                
+                <h1 class="tagline text-gray-900">
+                    Building What Matters
+                </h1>
+                
+                <div class="subtitle-wrapper">
+                    <div class="subtitle">
+                        An innovation studio building bridges between
+                    </div>
+                    <div class="bridge-concepts">
+                        <span class="concept">human potential</span>
+                        <span class="connector">and</span>
+                        <span class="concept">digital systems</span>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- About Section -->
         <section class="py-24 section-fade" id="about">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-12">
@@ -151,33 +344,70 @@
             </div>
         </section>
 
-        <section class="py-24 section-fade" id="initiatives">
-    <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-light mb-12 text-center text-gray-900">Current Initiatives</h2>
-        <div class="grid gap-8">
-            <div class="glass-card p-8 rounded-2xl hover:bg-white/90 transition-colors duration-300">
-                <h3 class="text-2xl font-medium mb-4 text-gray-900">HXOps</h3>
-                <p class="text-lg text-gray-600 mb-4">
-                    Transforming operations for mission-driven organizations by making technology more human.
-                </p>
-                <a href="https://www.llmagine.ai/flowhx.html" class="inline-block text-gray-600 link-hover">
-                    Learn more at HXOps.ai →
-                </a>
-            </div>
-            
-            <div class="glass-card p-8 rounded-2xl hover:bg-white/90 transition-colors duration-300">
-                <h3 class="text-2xl font-medium mb-4 text-gray-900">Vizr AI</h3>
-                <p class="text-lg text-gray-600 mb-4">
-                    Empowering professionals with AI-powered expert guidance for critical moments and decisions.
-                </p>
-                <a href="https://www.vizr.ai" class="inline-block text-gray-600 link-hover">
-                    Learn more at Vizr.ai →
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+        <!-- Updated Initiatives Section -->
+        <section class="py-24 section-fade" id="initiatives" style="background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,247,0.8));">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="initiative-label">
+                        Ventures
+                    </span>
+                    <h2 class="text-3xl font-light mb-6 text-gray-900">Current Initiatives</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Building solutions that transform how mission-driven teams work
+                    </p>
+                </div>
 
+                <div class="grid gap-8 max-w-4xl mx-auto">
+                    <div class="initiative-card glass-card p-8 rounded-2xl hover:bg-white/95 transition-all duration-300">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-medium mb-2 text-gray-900">HXOps</h3>
+                                <p class="text-gray-500 text-sm mb-4">Mission Operating System</p>
+                            </div>
+                            <span class="px-3 py-1 bg-primary-10 text-primary initiative-status rounded-full text-sm">
+                                Active
+                            </span>
+                        </div>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Transforming operations for mission-driven organizations by making technology more human.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://www.llmagine.ai/HXOps.html" class="inline-flex items-center text-primary link-hover">
+                                Learn more at HXOps.ai
+                                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card glass-card p-8 rounded-2xl hover:bg-white/95 transition-all duration-300">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-medium mb-2 text-gray-900">Vizr AI</h3>
+                                <p class="text-gray-500 text-sm mb-4">Expert Guidance System</p>
+                            </div>
+                            <span class="px-3 py-1 bg-secondary-10 text-secondary initiative-status rounded-full text-sm">
+                                Development
+                            </span>
+                        </div>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Empowering professionals with AI-powered expert guidance for critical moments and decisions.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://www.vizr.ai" class="inline-flex items-center text-primary link-hover">
+                                Learn more at Vizr.ai
+                                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
         <section class="py-24 section-fade" id="contact">
             <div class="max-w-6xl mx-auto px-6 text-center">
                 <h2 class="text-3xl font-light mb-6 text-gray-900">Connect With Us</h2>
@@ -199,31 +429,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const navLogo = document.querySelector('.nav-logo');
-            const heroLogo = document.querySelector('.hero-logo');
-            
+            const heroLogo = document.querySelector('.hero-section .logo-container');
+            const sections = document.querySelectorAll('.section-fade');
+            const observerOptions = { threshold: 0.1 };
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, observerOptions);
 
-            document.querySelectorAll('.section-fade').forEach(section => {
+            sections.forEach(section => {
                 observer.observe(section);
             });
 
-            // Handle logo transitions
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    navLogo.classList.add('visible');
-                    heroLogo.classList.add('hidden');
-                } else {
-                    navLogo.classList.remove('visible');
-                    heroLogo.classList.remove('hidden');
-                }
-            });
+            // Removed navLogo related code since the nav bar is no longer present
         });
     </script>
 </body>
